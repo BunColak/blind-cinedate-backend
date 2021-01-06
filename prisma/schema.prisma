@@ -15,4 +15,5 @@ model User {
   name String
   likedMovies Int[]
   dislikedMovies Int[]
+  watchedMovies Int[]
 }
