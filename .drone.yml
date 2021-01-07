@@ -15,7 +15,7 @@ steps:
       DATABASE_URL:
         from_secret: database_url
     commands:
-      - docker-compose up -d
+      - docker-compose up --build -d
 
 volumes:
   - name: dockersock
