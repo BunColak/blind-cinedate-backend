@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  cinedate:
+    build: .
+    ports:
+      - 9003:4000
+    environment:
+      - DATABASE_URL
+    networks:
+      - web
+    container_name: cinedate
+      
+networks:
+  web:
+    external: true
+      
+
+          
