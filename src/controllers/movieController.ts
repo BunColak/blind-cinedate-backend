@@ -7,7 +7,7 @@ const movieController = {
   likeMovie: async (req: Request, res: Response) => {
     try {
       const movieId = Number(req.params.id)
-      const userId = Number(req.body.user)
+      const userId = Number(req.body.userId)
       const user = await prisma.user.findFirst({ where: { id: userId } })
 
       if (!user) {
@@ -38,7 +38,7 @@ const movieController = {
   dislikeMovie: async (req: Request, res: Response) => {
     try {
       const movieId = Number(req.params.id)
-      const userId = Number(req.body.user)
+      const userId = Number(req.body.userId)
       const user = await prisma.user.findFirst({ where: { id: userId } })
       const alreadyDisliked = user?.dislikedMovies.find(m => m === movieId)
 
