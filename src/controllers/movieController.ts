@@ -1,7 +1,7 @@
 import { PrismaClientValidationError } from '@prisma/client'
 import { Request, Response } from 'express'
 import prisma from '../prisma'
-import { userNotFound } from '../utils/errors'
+import errors from '../utils/errors'
 
 const movieController = {
   likeMovie: async (req: Request, res: Response) => {
@@ -11,7 +11,7 @@ const movieController = {
       const user = await prisma.user.findFirst({ where: { id: userId } })
 
       if (!user) {
-        return res.status(400).json(userNotFound)
+        return res.status(400).json(errors.userNotFound)
       }
 
       const alreadyLiked = user.likedMovies.find(m => m === movieId)
@@ -30,7 +30,7 @@ const movieController = {
       })
     } catch (e) {
       if (e instanceof PrismaClientValidationError) {
-        return res.status(400).json(userNotFound)
+        return res.status(400).json(errors.userNotFound)
       }
       return res.json(e.message)
     }
@@ -43,7 +43,7 @@ const movieController = {
       const alreadyDisliked = user?.dislikedMovies.find(m => m === movieId)
 
       if (!user) {
-        return res.status(400).json(userNotFound)
+        return res.status(400).json(errors.userNotFound)
       }
 
       if (alreadyDisliked) {
@@ -60,7 +60,7 @@ const movieController = {
       })
     } catch (e) {
       if (e instanceof PrismaClientValidationError) {
-        return res.status(400).json(userNotFound)
+        return res.status(400).json(errors.userNotFound)
       }
       return res.json(e.message)
     }

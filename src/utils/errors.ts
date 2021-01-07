@@ -1,4 +1,4 @@
-export const userNotFound = {
+const userNotFound = {
   errors: [
     {
       param: 'id',
@@ -6,3 +6,16 @@ export const userNotFound = {
     }
   ]
 }
+
+const dbError = {
+  errors: [
+    {
+      param: null,
+      message: 'Database Unavailable'
+    }
+  ]
+}
+
+const errors = { userNotFound, dbError }
+
+export default errors
