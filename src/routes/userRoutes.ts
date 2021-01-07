@@ -7,5 +7,6 @@ const userRoutes = Router()
 
 userRoutes.get('/:id', ...userValidators.getUserValidators, validate, userController.getOne)
 userRoutes.post('/', ...userValidators.createUserValidators, validate, userController.createUser)
+userRoutes.post('/login', ...userValidators.loginUserValidators, validate, userController.loginUser)
 
 export default userRoutes
